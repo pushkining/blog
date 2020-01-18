@@ -3,12 +3,22 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
+        <link href="/style.css" rel="stylesheet"/>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        <header>
+            <div class="header-wrap"> 
+            <div class="logo"> Blog posts</div>
+            </div>         
+        </header>
+
         <div class="page">
             {% block body %}{% endblock %}
         </div>
+        <footer>  
+            Web dev pushkining 2020
+        </footer>
             {% block javascripts %}{% endblock %}
     </body>
 </html>
