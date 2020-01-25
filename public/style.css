@@ -70,3 +70,9 @@ footer {
     width: 100%;
     margin-bottom: 15px;
 }
+.ferro {
+  background: red;
+  width: 2rem;
+  height: 2rem;
+  margin: .5rem;
+}

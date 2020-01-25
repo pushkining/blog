@@ -3,8 +3,8 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
-
+//use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\Post;
 
 class Blog extends AbstractController
 {    
@@ -13,7 +13,13 @@ class Blog extends AbstractController
      */
     public function listPosts()
     {
-        return $this->render('posts/list.html.twig');
+        $em = $this->getDoctrine()->gerManager();
+        $posts = $em->getRepository(Post::class)->findAll();
+        var_dump($posts[0]->getTitle());
+        
+        return $this->render('posts/list.html.twig',[
+            "posts" => $posts
+         ]);   
     }
     
     
@@ -39,8 +45,22 @@ class Blog extends AbstractController
      */
     public function savePost()
     {
-        var_dump($_POST); die;
-    }
+        $title = $_POST['title'];
+        $description = $_POST['description'];
+        $em = $this->getDoctrine()->gerManager();
+        
+        $Post = new Post();
+        $Post->setTitle($title);
+        $Post->setDescription($description);
+        
+        $em->persist($Post);
+        $em->flush();
+       
+//        $em = $this->getDoctrine()->getManager();
+//        $post = $em->find(Post::class, 1);
+        
+         return $this->render();
+         }
     
     /**
      * @Route("/post/{id}", name="show", methods={"GET"})

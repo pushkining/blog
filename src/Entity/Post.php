@@ -27,9 +27,13 @@ class Post
     private $description;
 
     /**
-     * @ORM\Column(type="date")
+     * @ORM\Column(type="datetime")
      */
     private $date_update;
+    
+    public function __construct() {
+        $this->date_update = new \DataTime;
+    }
 
     public function getId()
     {
