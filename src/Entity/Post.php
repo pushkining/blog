@@ -67,7 +67,7 @@ class Post
 
     public function getDateUpdate()
     {
-        return $this->date_update;
+        return $this->date_update->format('Y-m-d H:i:s');
     }
 
     public function setDateUpdate(\DateTimeInterface $date_update)
